@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Math Practice Bank (2) — Preparation with Mushtaque | Sukkur IBA University</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+  :root {
+    --teal-deep:#0f6f66;
+    --teal:#12897d;
+    --teal-light:#e6f5f3;
+    --amber:#e2a13b;
+    --amber-deep:#c17f1f;
+    --coral:#d1553f;
+    --ink:#1c2b2a;
+    --sub:#5b6f6c;
+    --basic:#2e9e63;
+    --inter:#e2a13b;
+    --adv:#d1553f;
+    --card:#ffffff;
+    --bg:#f4faf9;
+    --paper:#fffdf7;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  body.exporting * { animation:none !important; transition:none !important; }
+
+  /* ---------- decorative animated backdrop ---------- */
+  .bg-deco { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  .bg-deco span {
+    position:absolute; font-family:Georgia,serif; color:var(--teal);
+    opacity:.07; font-weight:700; animation:float-glyph 22s linear infinite;
+    user-select:none;
+  }
+  @keyframes float-glyph {
+    0% { transform:translateY(110vh) rotate(0deg); }
+    100% { transform:translateY(-15vh) rotate(25deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg-deco span, .float-shape { animation:none !important; }
+    html { scroll-behavior:auto; }
+  }
+
+  header {
+    position:relative; z-index:1; overflow:hidden;
+    background:linear-gradient(135deg, var(--teal-deep), var(--teal) 55%, #0c5951);
+    color:#fff; padding:clamp(28px,6vw,44px) clamp(16px,5vw,24px) clamp(48px,8vw,60px);
+    text-align:center;
+  }
+  header .float-shape { position:absolute; border-radius:50%; opacity:.16; background:#fff; animation:drift 9s ease-in-out infinite; }
+  header .float-shape.s1 { width:90px; height:90px; top:-20px; left:6%; animation-duration:11s; }
+  header .float-shape.s2 { width:50px; height:50px; top:40px; right:10%; background:var(--amber); animation-duration:8s; animation-delay:.5s; }
+  header .float-shape.s3 { width:130px; height:130px; bottom:-60px; right:-30px; animation-duration:13s; }
+  header .float-shape.s4 { width:36px; height:36px; bottom:10px; left:16%; background:var(--coral); animation-duration:7s; animation-delay:1s; }
+  @keyframes drift { 0%,100% { transform:translateY(0) translateX(0); } 50% { transform:translateY(-16px) translateX(10px); } }
+
+  header h1 { margin:0 0 6px; font-size:clamp(21px,4.6vw,29px); letter-spacing:.3px; position:relative; animation:fadeDown .7s ease both; }
+  header p.tagline { margin:0; opacity:.92; font-size:clamp(12.5px,2.6vw,15px); position:relative; animation:fadeDown .7s .1s ease both; }
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+
+  .tabbar {
+    position:relative; z-index:2; max-width:640px; margin:16px auto 0;
+    display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:0 12px;
+  }
+  .tabbtn {
+    border:1.5px solid rgba(255,255,255,.55); background:rgba(255,255,255,.08); color:#fff;
+    padding:9px 18px; border-radius:22px; font-size:13.5px; font-weight:700; cursor:pointer;
+    transition:background .2s, transform .15s, color .2s;
+  }
+  .tabbtn:hover { transform:translateY(-1px); background:rgba(255,255,255,.18); }
+  .tabbtn.active { background:#fff; color:var(--teal-deep); }
+
+  nav.toc {
+    max-width:1000px; margin:-18px auto 0; background:#fff;
+    border-radius:14px; box-shadow:0 8px 24px rgba(15,111,102,.18);
+    padding:16px 18px; display:flex; flex-wrap:wrap; gap:8px 10px;
+    position:relative; z-index:2;
+  }
+  nav.toc a.nav-link {
+    text-decoration:none; color:var(--teal-deep); background:var(--teal-light);
+    padding:8px 12px; border-radius:20px; font-size:13.5px; font-weight:600;
+    border:1px solid rgba(15,111,102,.15); transition:background .18s, color .18s, transform .15s;
+  }
+  nav.toc a.nav-link:hover { background:var(--teal); color:#fff; transform:translateY(-1px); }
+
+  .toolbar {
+    max-width:1000px; margin:14px auto 0; padding:0 20px;
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end;
+  }
+  .btn {
+    border:none; cursor:pointer; font-weight:700; font-size:13px;
+    padding:10px 16px; border-radius:10px; display:inline-flex; gap:7px; align-items:center;
+    transition:transform .15s, box-shadow .15s, background .2s;
+  }
+  .btn:active { transform:scale(.96); }
+  .btn-ghost { background:#fff; color:var(--teal-deep); border:1.5px solid #cfe6e2; }
+  .btn-ghost:hover { background:var(--teal-light); }
+  .btn-primary { background:linear-gradient(135deg,var(--teal-deep),var(--teal)); color:#fff; box-shadow:0 4px 14px rgba(15,111,102,.35); }
+  .btn-primary:hover { box-shadow:0 6px 18px rgba(15,111,102,.48); }
+  .btn-amber { background:linear-gradient(135deg,var(--amber-deep),var(--amber)); color:#fff; box-shadow:0 4px 14px rgba(194,143,30,.35); }
+  .btn[disabled] { opacity:.6; cursor:wait; }
+
+  main { max-width:1000px; margin:22px auto 60px; padding:0 20px; position:relative; z-index:1; }
+
+  .view { display:none; }
+  .view.active { display:block; animation:slideIn .45s ease both; }
+  @keyframes slideIn { from { opacity:0; transform:translateX(14px); } to { opacity:1; transform:translateX(0); } }
+
+  .topic { margin-bottom:20px; scroll-margin-top:20px; border-radius:16px; overflow:hidden;
+    box-shadow:0 2px 10px rgba(20,60,55,.07); background:var(--card); border:1px solid #e3efed;
+    opacity:0; transform:translateY(16px); animation:cardIn .5s ease forwards; }
+  .topic:nth-of-type(1){animation-delay:.02s} .topic:nth-of-type(2){animation-delay:.06s}
+  .topic:nth-of-type(3){animation-delay:.10s} .topic:nth-of-type(4){animation-delay:.14s}
+  .topic:nth-of-type(5){animation-delay:.18s} .topic:nth-of-type(6){animation-delay:.22s}
+  .topic:nth-of-type(7){animation-delay:.26s} .topic:nth-of-type(8){animation-delay:.30s}
+  .topic:nth-of-type(9){animation-delay:.34s} .topic:nth-of-type(10){animation-delay:.38s}
+  @keyframes cardIn { to { opacity:1; transform:translateY(0); } }
+
+  .topic-header {
+    width:100%; display:flex; align-items:center; gap:14px; text-align:left;
+    background:#fff; border:none; padding:16px 18px; cursor:pointer; font:inherit; color:inherit;
+  }
+  .topic-header:hover { background:var(--teal-light); }
+  .topic-icon { flex:0 0 auto; width:40px; height:40px; color:var(--teal-deep); background:var(--teal-light); border-radius:10px; padding:6px; }
+  .topic-icon svg { width:100%; height:100%; display:block; }
+  .topic-headtext { flex:1 1 auto; min-width:0; }
+  .topic-title { font-size:clamp(16px,2.6vw,20px); color:var(--teal-deep); margin:0; border-left:5px solid var(--amber); padding-left:10px; }
+  .topic-sub { color:var(--sub); margin:3px 0 0 15px; font-size:13px; }
+  .topic-count { font-size:11.5px; color:var(--teal-deep); background:var(--teal-light); border-radius:20px; padding:3px 9px; font-weight:700; flex:0 0 auto; }
+  .chevron { flex:0 0 auto; font-size:22px; color:var(--amber-deep); transition:transform .3s; }
+  .topic.open .chevron { transform:rotate(90deg); }
+
+  .topic-body { max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease, padding .35s ease; padding:0 18px; }
+  .topic.open .topic-body { max-height:6000px; opacity:1; padding:0 18px 18px; }
+
+  .concept-box {
+    background:linear-gradient(135deg,var(--teal-light),#fbf6e9); border:1px dashed #bfe0da;
+    border-radius:12px; padding:12px 16px; margin:4px 0 16px; font-size:14px; color:#2b3a38;
+  }
+  .concept-label { display:inline-block; font-size:10.5px; text-transform:uppercase; letter-spacing:.6px; font-weight:800; color:#fff; background:var(--amber-deep); padding:2px 9px; border-radius:10px; margin-bottom:6px; }
+  .concept-box p { margin:6px 0 0; }
+
+  .qgrid { display:flex; flex-direction:column; gap:16px; }
+  .qcard {
+    background:var(--card); border-radius:12px; padding:16px 18px;
+    box-shadow:0 2px 8px rgba(20,60,55,.05); border:1px solid #e3efed;
+    transition:transform .18s, box-shadow .18s;
+  }
+  .qcard:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(20,60,55,.12); }
+  .qhead { display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap; }
+  .qnum { font-weight:800; color:#fff; background:var(--teal-deep); padding:3px 10px; border-radius:8px; font-size:13px; }
+  .diff { font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:20px; color:#fff; }
+  .diff-basic { background:var(--basic); }
+  .diff-inter { background:var(--inter); }
+  .diff-adv { background:var(--adv); }
+  .qprompt { font-size:clamp(14.5px,2.4vw,16px); font-weight:600; margin-bottom:10px; overflow-x:auto; }
+  .steps { display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+  .step { display:flex; gap:10px; align-items:flex-start; }
+  .step-num { flex:0 0 auto; width:20px; height:20px; border-radius:50%; background:var(--teal-light); color:var(--teal-deep); font-size:11.5px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+  .step-text { font-size:14px; color:#2b3a38; overflow-x:auto; }
+  .answer { background:var(--teal-light); border-radius:8px; padding:8px 12px; font-size:15px; font-weight:600; color:var(--teal-deep); display:inline-flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .ans-label { font-size:11px; text-transform:uppercase; letter-spacing:.5px; background:var(--teal-deep); color:#fff; padding:2px 8px; border-radius:10px; }
+
+  /* ---------- assignment view ---------- */
+  .assign-intro { background:#fff; border-radius:14px; padding:18px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(20,60,55,.07); border:1px solid #e3efed; }
+  .assign-intro h2 { margin:0 0 8px; color:var(--teal-deep); font-size:20px; }
+  .assign-intro p { margin:0; color:var(--sub); font-size:14px; }
+  .assign-group { margin-bottom:22px; }
+  .assign-group h3 { color:var(--teal-deep); font-size:15.5px; margin:0 0 10px; padding-left:10px; border-left:5px solid var(--amber); }
+  .assign-list { display:flex; flex-direction:column; gap:10px; }
+  .aq { background:#fff; border:1px solid #e3efed; border-radius:10px; padding:11px 14px; font-size:14.5px; box-shadow:0 1px 4px rgba(20,60,55,.05); display:flex; gap:10px; }
+  .aq b { color:var(--teal-deep); flex:0 0 auto; }
+  .aq .aq-text { overflow-x:auto; }
+
+  .key-toggle-wrap { text-align:center; margin:26px 0 8px; }
+  .keybox { max-height:0; overflow:hidden; opacity:0; transition:max-height .5s ease, opacity .4s ease; }
+  .keybox.open { max-height:20000px; opacity:1; }
+  .key-panel { background:var(--paper); border:2px dashed var(--amber); border-radius:14px; padding:18px 20px; margin-top:16px; }
+  .key-panel h2 { color:var(--amber-deep); margin-top:0; }
+  .key-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:8px 18px; }
+  .key-grid div { font-size:13.5px; padding:4px 0; border-bottom:1px dotted #e3d9bd; }
+  .key-grid b { color:var(--teal-deep); }
+
+  footer { text-align:center; color:var(--sub); font-size:12.5px; padding:20px; position:relative; z-index:1; }
+
+  @media (max-width:600px) {
+    header h1 { font-size:20px; }
+    .tabbar { margin-top:12px; }
+    .topic-header { padding:13px 12px; gap:10px; }
+    .topic-icon { width:32px; height:32px; }
+    .topic-sub { margin-left:0; }
+    .toolbar { justify-content:center; }
+    .qcard { padding:13px 14px; }
+    .key-grid { grid-template-columns:1fr; }
+  }
+
+  /* keep PDF export clean: no shadows/hover transforms/decoration */
+  body.exporting .bg-deco, body.exporting .float-shape, body.exporting .toolbar,
+  body.exporting .tabbar, body.exporting .chevron, body.exporting .topic-count { display:none !important; }
+  body.exporting .topic, body.exporting .qcard { box-shadow:none !important; transform:none !important; opacity:1 !important; }
+  body.exporting .topic-body { max-height:none !important; opacity:1 !important; padding:0 18px 18px !important; }
+  body.exporting .keybox { max-height:none !important; opacity:1 !important; }
+  body.exporting header { padding:22px 20px; }
+</style>
+</head>
+<body>
+
+<div class="bg-deco" id="bgDeco" aria-hidden="true"></div>
+
+<header>
+  <span class="float-shape s1"></span>
+  <span class="float-shape s2"></span>
+  <span class="float-shape s3"></span>
+  <span class="float-shape s4"></span>
+  <h1>Mathematics Practice Bank — Lecture 2 Extended</h1>
+  <p class="tagline">Preparation with Mushtaque &middot; Sukkur IBA University &mdash; 10 topics, worked practice questions, and a 100-question assignment with answer key</p>
+  <div class="tabbar">
+    <button class="tabbtn active" data-view="view-lecture" id="tabLectureBtn">&#128218; Lecture &amp; Practice Bank</button>
+    <button class="tabbtn" data-view="view-assignment" id="tabAssignBtn">&#128221; 100-Question Assignment</button>
+  </div>
+</header>
+
+<div class="view active" id="view-lecture">
+<nav class="toc">
+<a href="#topic-1" class="nav-link">1. Operations on Fractions</a>
+<a href="#topic-2" class="nav-link">2. Basic Roots</a>
+<a href="#topic-3" class="nav-link">3. Fraction Operation Solving Techniques</a>
+<a href="#topic-4" class="nav-link">4. Properties of Real Numbers</a>
+<a href="#topic-5" class="nav-link">5. Factors</a>
+<a href="#topic-6" class="nav-link">6. Multiples</a>
+<a href="#topic-7" class="nav-link">7. Least Common Multiple (LCM)</a>
+<a href="#topic-8" class="nav-link">8. Highest Common Factor (HCF)</a>
+<a href="#topic-9" class="nav-link">9. Exponents &amp; Their Properties</a>
+<a href="#topic-10" class="nav-link">10. Roots &amp; Their Properties</a>
+</nav>
+<div class="toolbar">
+  <button class="btn btn-ghost" id="expandAllBtn">&#8597; Expand All</button>
+  <button class="btn btn-ghost" id="collapseAllBtn">&#8596; Collapse All</button>
+  <button class="btn btn-primary" id="downloadLectureBtn">&#11015; Download Lecture PDF</button>
+</div>
+
+<main>
+
+    <section class="topic" id="topic-1">
+      <button class="topic-header" data-target="body-1" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 6 A26 26 0 0 1 55 45 L32 32 Z" fill="currentColor" opacity=".85"/></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">1. Operations on Fractions</h2>
+          <p class="topic-sub">Addition, subtraction, multiplication &amp; division of fractions</p>
+        </span>
+        <span class="topic-count" data-count-for="body-1"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-1">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>A fraction shows part of a whole as <b>numerator / denominator</b>. To add or subtract, first rewrite the fractions over a common denominator (LCD). To multiply, multiply straight across. To divide, multiply by the reciprocal (flip the second fraction).</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \dfrac{1}{4} + \dfrac{1}{3} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">LCD of 4 and 3 is 12.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Convert: \( \dfrac{1}{4}=\dfrac{3}{12},\ \ \dfrac{1}{3}=\dfrac{4}{12} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Add numerators: \( \dfrac{3}{12}+\dfrac{4}{12}=\dfrac{7}{12} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{7}{12} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \dfrac{3}{5} - \dfrac{1}{4} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">LCD of 5 and 4 is 20.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Convert: \( \dfrac{3}{5}=\dfrac{12}{20},\ \ \dfrac{1}{4}=\dfrac{5}{20} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Subtract: \( \dfrac{12}{20}-\dfrac{5}{20}=\dfrac{7}{20} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{7}{20} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \dfrac{2}{3} \times \dfrac{3}{8} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiply numerators and denominators: \( \dfrac{2\times3}{3\times8}=\dfrac{6}{24} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Simplify by dividing by HCF = 6: \( \dfrac{6\div6}{24\div6}=\dfrac{1}{4} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{1}{4} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \dfrac{5}{6} \div \dfrac{2}{3} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Division = multiply by reciprocal: \( \dfrac{5}{6}\times\dfrac{3}{2} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiply: \( \dfrac{5\times3}{6\times2}=\dfrac{15}{12} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Simplify (÷3): \( \dfrac{15}{12}=\dfrac{5}{4}=1\dfrac{1}{4} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 1\dfrac{1}{4} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( 1\dfrac{1}{2} + 2\dfrac{2}{3} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Convert to improper fractions: \( 1\dfrac{1}{2}=\dfrac{3}{2},\ \ 2\dfrac{2}{3}=\dfrac{8}{3} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">LCD of 2 and 3 is 6: \( \dfrac{3}{2}=\dfrac{9}{6},\ \ \dfrac{8}{3}=\dfrac{16}{6} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Add: \( \dfrac{9}{6}+\dfrac{16}{6}=\dfrac{25}{6} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Write as a mixed number: \( \dfrac{25}{6}=4\dfrac{1}{6} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 4\dfrac{1}{6} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( 3\dfrac{1}{4} - 1\dfrac{5}{6} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Convert to improper fractions: \( 3\dfrac{1}{4}=\dfrac{13}{4},\ \ 1\dfrac{5}{6}=\dfrac{11}{6} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">LCD of 4 and 6 is 12: \( \dfrac{13}{4}=\dfrac{39}{12},\ \ \dfrac{11}{6}=\dfrac{22}{12} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Subtract: \( \dfrac{39}{12}-\dfrac{22}{12}=\dfrac{17}{12} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Write as a mixed number: \( \dfrac{17}{12}=1\dfrac{5}{12} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 1\dfrac{5}{12} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \dfrac{2}{5} \times 1\dfrac{1}{4} \div \dfrac{3}{10} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Convert mixed number: \( 1\dfrac{1}{4}=\dfrac{5}{4} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiply first: \( \dfrac{2}{5}\times\dfrac{5}{4}=\dfrac{10}{20}=\dfrac{1}{2} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Divide by \( \dfrac{3}{10} \): multiply by reciprocal \( \dfrac{1}{2}\times\dfrac{10}{3} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Simplify: \( \dfrac{10}{6}=\dfrac{5}{3}=1\dfrac{2}{3} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 1\dfrac{2}{3} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \left(\dfrac{1}{2}+\dfrac{1}{3}\right) \div \left(\dfrac{1}{2}-\dfrac{1}{3}\right) \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Add inside first bracket (LCD 6): \( \dfrac{1}{2}+\dfrac{1}{3}=\dfrac{3}{6}+\dfrac{2}{6}=\dfrac{5}{6} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Subtract inside second bracket: \( \dfrac{1}{2}-\dfrac{1}{3}=\dfrac{3}{6}-\dfrac{2}{6}=\dfrac{1}{6} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Divide: \( \dfrac{5}{6}\div\dfrac{1}{6}=\dfrac{5}{6}\times\dfrac{6}{1}=5 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 5 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Evaluate: \( 2\dfrac{1}{3} \times 1\dfrac{1}{2} - \dfrac{3}{4} \div \dfrac{1}{2} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Convert mixed numbers: \( 2\dfrac{1}{3}=\dfrac{7}{3},\ \ 1\dfrac{1}{2}=\dfrac{3}{2} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiply first: \( \dfrac{7}{3}\times\dfrac{3}{2}=\dfrac{21}{6}=\dfrac{7}{2} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Divide second part: \( \dfrac{3}{4}\div\dfrac{1}{2}=\dfrac{3}{4}\times2=\dfrac{3}{2} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Subtract (LCD 2): \( \dfrac{7}{2}-\dfrac{3}{2}=\dfrac{4}{2}=2 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 2 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \left[\dfrac{3}{4} + \left(\dfrac{1}{2}\times\dfrac{2}{3}\right)\right] \div \left[\dfrac{5}{6}-\dfrac{1}{3}\right] \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Inner multiplication: \( \dfrac{1}{2}\times\dfrac{2}{3}=\dfrac{2}{6}=\dfrac{1}{3} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Add in first bracket (LCD 12): \( \dfrac{3}{4}+\dfrac{1}{3}=\dfrac{9}{12}+\dfrac{4}{12}=\dfrac{13}{12} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Subtract in second bracket (LCD 6): \( \dfrac{5}{6}-\dfrac{1}{3}=\dfrac{5}{6}-\dfrac{2}{6}=\dfrac{3}{6}=\dfrac{1}{2} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Divide: \( \dfrac{13}{12}\div\dfrac{1}{2}=\dfrac{13}{12}\times2=\dfrac{26}{12}=\dfrac{13}{6} \)</div></div>
+<div class="step"><span class="step-num">5</span><div class="step-text">Write as a mixed number: \( \dfrac{13}{6}=2\dfrac{1}{6} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 2\dfrac{1}{6} \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-2">
+      <button class="topic-header" data-target="body-2" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><path d="M6 34 L16 44 L28 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><line x1="28" y1="12" x2="58" y2="12" stroke="currentColor" stroke-width="4"/></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">2. Basic Roots</h2>
+          <p class="topic-sub">Evaluating square roots and cube roots</p>
+        </span>
+        <span class="topic-count" data-count-for="body-2"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-2">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>The <b>square root</b> of a number n is the value that, multiplied by itself, gives n (√n × √n = n). The <b>cube root</b> is the value that, multiplied by itself three times, gives n. Perfect squares/cubes have whole-number roots.</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt{49} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Find a number which, multiplied by itself, gives 49.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 7\times7=49 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 7 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt{121} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Find a number which, multiplied by itself, gives 121.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 11\times11=121 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 11 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt[3]{8} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Find a number which, cubed, gives 8.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 2\times2\times2=8 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 2 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt{144} + \sqrt{16} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Evaluate each root separately: \( \sqrt{144}=12,\ \ \sqrt{16}=4 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Add: \( 12+4=16 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 16 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt[3]{64} - \sqrt[3]{27} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Evaluate each root: \( \sqrt[3]{64}=4,\ \ \sqrt[3]{27}=3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Subtract: \( 4-3=1 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 1 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt{25 \times 4} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Use the product rule: \( \sqrt{25\times4}=\sqrt{25}\times\sqrt{4} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( \sqrt{25}=5,\ \ \sqrt{4}=2 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Multiply: \( 5\times2=10 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 10 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt{\dfrac{81}{9}} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Use the quotient rule: \( \sqrt{\dfrac{81}{9}}=\dfrac{\sqrt{81}}{\sqrt{9}} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( \sqrt{81}=9,\ \ \sqrt{9}=3 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Divide: \( \dfrac{9}{3}=3 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 3 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify: \( \sqrt{200} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Write 200 as a product involving a perfect square: \( 200=100\times2 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( \sqrt{200}=\sqrt{100}\times\sqrt{2}=10\sqrt{2} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 10\sqrt{2} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify: \( \sqrt[3]{250} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Write 250 as a product involving a perfect cube: \( 250=125\times2 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( \sqrt[3]{250}=\sqrt[3]{125}\times\sqrt[3]{2}=5\sqrt[3]{2} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 5\sqrt[3]{2} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify and add: \( \sqrt{50} + \sqrt{18} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Simplify each radical: \( \sqrt{50}=\sqrt{25\times2}=5\sqrt2 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( \sqrt{18}=\sqrt{9\times2}=3\sqrt2 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Add like radicals: \( 5\sqrt2+3\sqrt2=8\sqrt2 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 8\sqrt{2} \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-3">
+      <button class="topic-header" data-target="body-3" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><rect x="8" y="10" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><rect x="36" y="34" width="20" height="20" rx="4" fill="currentColor" opacity=".85"/><path d="M28 20 H52 M40 8 V32" stroke="currentColor" stroke-width="3" fill="none"/></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">3. Fraction Operation Solving Techniques</h2>
+          <p class="topic-sub">LCD, simplification, complex fractions &amp; equations</p>
+        </span>
+        <span class="topic-count" data-count-for="body-3"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-3">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>Multi-step fraction problems combine several operations. Work through them using the correct order of operations, find LCDs as needed, and isolate the unknown with inverse operations when solving an equation.</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Find the LCD of \( \dfrac{1}{6} \) and \( \dfrac{1}{4} \), then add them.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiples of 6: 6, 12, 18 …  Multiples of 4: 4, 8, 12 …</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">LCD = 12.</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Convert: \( \dfrac{1}{6}=\dfrac{2}{12},\ \ \dfrac{1}{4}=\dfrac{3}{12} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Add: \( \dfrac{2}{12}+\dfrac{3}{12}=\dfrac{5}{12} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{5}{12} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Simplify \( \dfrac{8}{12} \) to its lowest terms.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Find the HCF of 8 and 12, which is 4.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Divide numerator and denominator by 4: \( \dfrac{8\div4}{12\div4}=\dfrac{2}{3} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{2}{3} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Convert \( \dfrac{7}{2} \) to a mixed number.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Divide 7 by 2: quotient 3, remainder 1.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Write as a mixed number: \( 3\dfrac{1}{2} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 3\dfrac{1}{2} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Simplify the complex fraction \( \dfrac{\ \dfrac{1}{2}\ }{\ \dfrac{3}{4}\ } \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">A complex fraction means division: \( \dfrac{1}{2}\div\dfrac{3}{4} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiply by the reciprocal: \( \dfrac{1}{2}\times\dfrac{4}{3}=\dfrac{4}{6} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Simplify: \( \dfrac{4}{6}=\dfrac{2}{3} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{2}{3} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate using the LCD technique: \( \dfrac{2}{3} + \dfrac{1}{6} - \dfrac{1}{2} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">LCD of 3, 6, 2 is 6.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Convert: \( \dfrac{2}{3}=\dfrac{4}{6},\ \ \dfrac{1}{6}=\dfrac{1}{6},\ \ \dfrac{1}{2}=\dfrac{3}{6} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Combine: \( \dfrac{4}{6}+\dfrac{1}{6}-\dfrac{3}{6}=\dfrac{2}{6} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Simplify: \( \dfrac{2}{6}=\dfrac{1}{3} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{1}{3} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Compare \( \dfrac{3}{5} \) and \( \dfrac{5}{8} \) using cross-multiplication.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Cross-multiply: \( 3\times8=24 \) and \( 5\times5=25 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Since \( 24 < 25 \), the fraction on the left is smaller.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{3}{5} < \dfrac{5}{8} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Simplify the complex fraction \( \dfrac{2+\dfrac{1}{3}}{1-\dfrac{1}{4}} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Simplify the numerator: \( 2+\dfrac{1}{3}=\dfrac{7}{3} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Simplify the denominator: \( 1-\dfrac{1}{4}=\dfrac{3}{4} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Divide: \( \dfrac{7}{3}\div\dfrac{3}{4}=\dfrac{7}{3}\times\dfrac{4}{3}=\dfrac{28}{9} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Write as a mixed number: \( \dfrac{28}{9}=3\dfrac{1}{9} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 3\dfrac{1}{9} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Solve for \( x \): \( \dfrac{x}{4} + \dfrac{1}{3} = \dfrac{5}{6} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Isolate the term with \( x \): \( \dfrac{x}{4} = \dfrac{5}{6}-\dfrac{1}{3} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">LCD of 6 and 3 is 6: \( \dfrac{5}{6}-\dfrac{2}{6}=\dfrac{3}{6}=\dfrac{1}{2} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">So \( \dfrac{x}{4}=\dfrac{1}{2} \). Multiply both sides by 4: \( x=2 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( x = 2 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify the nested fraction \( \dfrac{1}{1+\dfrac{1}{1+\dfrac{1}{2}}} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Simplify innermost part: \( 1+\dfrac{1}{2}=\dfrac{3}{2} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Next layer: \( 1+\dfrac{1}{\ \dfrac{3}{2}\ }=1+\dfrac{2}{3}=\dfrac{5}{3} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Final layer: \( \dfrac{1}{\ \dfrac{5}{3}\ }=\dfrac{3}{5} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{3}{5} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \left(\dfrac{3}{4} \div \dfrac{1}{8}\right) - \left(\dfrac{2}{3} \times \dfrac{3}{5}\right) \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">First bracket: \( \dfrac{3}{4}\div\dfrac{1}{8}=\dfrac{3}{4}\times8=6 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Second bracket: \( \dfrac{2}{3}\times\dfrac{3}{5}=\dfrac{6}{15}=\dfrac{2}{5} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Subtract (LCD 5): \( 6-\dfrac{2}{5}=\dfrac{30}{5}-\dfrac{2}{5}=\dfrac{28}{5} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Write as a mixed number: \( \dfrac{28}{5}=5\dfrac{3}{5} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 5\dfrac{3}{5} \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-4">
+      <button class="topic-header" data-target="body-4" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><path d="M14 10 C6 10 6 32 14 32 C6 32 6 54 14 54" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M50 10 C58 10 58 32 50 32 C58 32 58 54 50 54" fill="none" stroke="currentColor" stroke-width="3.5"/><text x="32" y="37" font-size="16" text-anchor="middle" fill="currentColor" font-family="Georgia,serif">a+b</text></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">4. Properties of Real Numbers</h2>
+          <p class="topic-sub">Commutative, associative, distributive, identity &amp; inverse</p>
+        </span>
+        <span class="topic-count" data-count-for="body-4"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-4">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>Real numbers obey consistent rules: <b>Commutative</b> (order doesn't matter for + / ×), <b>Associative</b> (grouping doesn't matter), <b>Distributive</b> (a(b+c) = ab+ac), <b>Identity</b> (adding 0 or × by 1 changes nothing), and <b>Inverse</b> (a number plus its opposite is 0; a number times its reciprocal is 1).</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Name the property shown: \( 5+7=7+5 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">The order of the numbers is switched, but the sum stays the same.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">This is the Commutative Property of Addition.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \text{Commutative Property of Addition} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Name the property shown: \( 3\times(4\times5)=(3\times4)\times5 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">The grouping of the numbers changes, but the product stays the same.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">This is the Associative Property of Multiplication.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \text{Associative Property of Multiplication} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Name the property shown: \( 9+0=9 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Adding 0 does not change the value.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">This is the Additive Identity Property.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \text{Additive Identity} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Use the distributive property to expand \( 4(x+3) \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Distribute the 4 to each term inside the bracket: \( 4\times x + 4\times3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Simplify: \( 4x+12 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 4x+12 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Name the property shown: \( 6\times1=6 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiplying by 1 does not change the value.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">This is the Multiplicative Identity Property.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \text{Multiplicative Identity} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the additive inverse of \( -8 \).</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">The additive inverse is the number that, added to the original, gives 0.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( -8 + 8 = 0 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 8 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the multiplicative inverse (reciprocal) of \( \dfrac{3}{5} \).</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">The multiplicative inverse is the number that, multiplied by the original, gives 1.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( \dfrac{3}{5}\times\dfrac{5}{3}=1 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{5}{3} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify using the distributive property: \( 7(2x-3)+5 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Distribute the 7: \( 7\times2x - 7\times3 + 5 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =14x - 21 + 5 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Combine like terms: \( 14x-16 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 14x-16 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Verify the Associative Property of Addition using \( 2, 3, 7 \).</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Left side: \( (2+3)+7 = 5+7 = 12 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Right side: \( 2+(3+7) = 2+10 = 12 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Both sides are equal, confirming the associative property.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12 = 12 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify using the distributive property: \( 3(x+4) - 2(x-1) \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Distribute both terms: \( 3x+12 - (2x-2) \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =3x+12-2x+2 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Combine like terms: \( x+14 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( x+14 \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-5">
+      <button class="topic-header" data-target="body-5" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><circle cx="32" cy="10" r="6" fill="currentColor"/><circle cx="14" cy="34" r="6" fill="currentColor" opacity=".85"/><circle cx="50" cy="34" r="6" fill="currentColor" opacity=".85"/><circle cx="6" cy="56" r="5" fill="currentColor" opacity=".6"/><circle cx="22" cy="56" r="5" fill="currentColor" opacity=".6"/><circle cx="42" cy="56" r="5" fill="currentColor" opacity=".6"/><circle cx="58" cy="56" r="5" fill="currentColor" opacity=".6"/><path d="M32 16 L14 28 M32 16 L50 28 M14 40 L6 51 M14 40 L22 51 M50 40 L42 51 M50 40 L58 51" stroke="currentColor" stroke-width="2.5" fill="none"/></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">5. Factors</h2>
+          <p class="topic-sub">Finding factors, prime factorization &amp; number of factors</p>
+        </span>
+        <span class="topic-count" data-count-for="body-5"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-5">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>A <b>factor</b> of a number divides it exactly, with no remainder. <b>Prime factorization</b> breaks a number into a product of primes. The total count of factors comes from the exponents in that factorization: multiply (exponent + 1) for every prime.</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">List all the factors of 12.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Test each whole number from 1 up to 12 to see if it divides evenly.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 1,2,3,4,6,12 \) all divide 12 exactly.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 1,2,3,4,6,12 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Is 7 a factor of 28?</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Divide: \( 28\div7=4 \), a whole number.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Since it divides exactly, yes, 7 is a factor of 28.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \text{Yes} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">List all the factors of 20.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Test each whole number up to 20.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 1,2,4,5,10,20 \) all divide 20 exactly.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 1,2,4,5,10,20 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the greatest factor of 36, other than 36 itself.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">List the factors of 36: \( 1,2,3,4,6,9,12,18,36 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">The largest factor smaller than 36 is 18.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 18 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the common factors of 18 and 24.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Factors of 18: \( 1,2,3,6,9,18 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Factors of 24: \( 1,2,3,4,6,8,12,24 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Common factors: \( 1,2,3,6 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 1,2,3,6 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Write the prime factorization of 60.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Divide by the smallest prime repeatedly: \( 60=2\times30=2\times2\times15=2\times2\times3\times5 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">So \( 60=2^2\times3\times5 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 2^2\times3\times5 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">How many factors does 28 have?</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">List them: \( 1,2,4,7,14,28 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Count them: there are 6 factors.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 6 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Find the number of factors of 72 using prime factorization.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize: \( 72=2^3\times3^2 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Number of factors \( =(3+1)(2+1)=4\times3=12 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Find the Greatest Common Factor (GCF) of 48 and 60 using prime factorization.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize both: \( 48=2^4\times3,\ \ 60=2^2\times3\times5 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Take the lowest power of each common prime: \( 2^2\times3 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =4\times3=12 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Find all the factor pairs of 100.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Test pairs whose product is 100.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 1\times100,\ 2\times50,\ 4\times25,\ 5\times20,\ 10\times10 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( (1,100),(2,50),(4,25),(5,20),(10,10) \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-6">
+      <button class="topic-header" data-target="body-6" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><circle cx="10" cy="32" r="5" fill="currentColor"/><circle cx="24" cy="32" r="5" fill="currentColor" opacity=".85"/><circle cx="38" cy="32" r="5" fill="currentColor" opacity=".65"/><circle cx="52" cy="32" r="5" fill="currentColor" opacity=".45"/><path d="M4 32 H60" stroke="currentColor" stroke-width="2" stroke-dasharray="2 4"/></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">6. Multiples</h2>
+          <p class="topic-sub">Listing multiples, common multiples &amp; real-life applications</p>
+        </span>
+        <span class="topic-count" data-count-for="body-6"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-6">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>A <b>multiple</b> of a number is that number times any whole number (n×1, n×2, n×3 …). Multiples are generated by repeated addition and continue forever in both size and count.</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">List the first 5 multiples of 4.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiply 4 by 1, 2, 3, 4, 5 in turn.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 4,8,12,16,20 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 4,8,12,16,20 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Is 45 a multiple of 9?</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Divide: \( 45\div9=5 \), a whole number.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Yes, 45 is a multiple of 9.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \text{Yes} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">List the first 5 multiples of 7.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiply 7 by 1, 2, 3, 4, 5 in turn.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 7,14,21,28,35 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 7,14,21,28,35 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the 8th multiple of 6.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiply 6 by 8.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 6\times8=48 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 48 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the common multiples of 3 and 4 up to 30.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiples of 3: 3,6,9,12,15,18,21,24,27,30</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiples of 4: 4,8,12,16,20,24,28</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Common multiples up to 30: \( 12,24 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12,24 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the smallest 3-digit multiple of 12.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Divide 100 by 12: \( 100\div12\approx8.3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Round up to 9: \( 9\times12=108 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 108 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">List the multiples of 15 between 40 and 100.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiples of 15: 15,30,45,60,75,90,105,…</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Those between 40 and 100: \( 45,60,75,90 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 45,60,75,90 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Use lists of multiples to find the LCM of 8 and 12.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiples of 8: 8,16,24,32,40</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiples of 12: 12,24,36,48</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">The smallest common value is 24.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 24 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Find the least common multiple of 9, 12, and 18 by listing multiples.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiples of 9: 9,18,27,36,45</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiples of 12: 12,24,36,48</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Multiples of 18: 18,36,54</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">The smallest common value is 36.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 36 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Bell A rings every 15 minutes and Bell B rings every 20 minutes. Both ring together at 8:00. When will they next ring together?</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Find the LCM of 15 and 20.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 15=3\times5,\ \ 20=2^2\times5 \Rightarrow \text{LCM}=2^2\times3\times5=60 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">They will ring together again after 60 minutes, i.e. at 9:00.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 9{:}00 \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-7">
+      <button class="topic-header" data-target="body-7" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><circle cx="24" cy="32" r="20" fill="currentColor" opacity=".55"/><circle cx="40" cy="32" r="20" fill="currentColor" opacity=".55"/></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">7. Least Common Multiple (LCM)</h2>
+          <p class="topic-sub">Prime factorization method &amp; division ladder method</p>
+        </span>
+        <span class="topic-count" data-count-for="body-7"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-7">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>The <b>LCM</b> of two or more numbers is the smallest number that is a multiple of every one of them. Find it via prime factorization (take the highest power of each prime that appears) or the division-ladder method.</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Find the LCM of 4 and 6.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiples of 4: 4,8,12,16</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiples of 6: 6,12,18</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Smallest common multiple: 12.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Find the LCM of 5 and 10.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Since 10 is already a multiple of 5, the LCM is 10.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 10 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Find the LCM of 3 and 7.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">3 and 7 share no common factors other than 1 (co-prime).</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">LCM \( =3\times7=21 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 21 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the LCM of 12 and 18 using prime factorization.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize: \( 12=2^2\times3,\ \ 18=2\times3^2 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Take the highest power of each prime: \( 2^2\times3^2 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =4\times9=36 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 36 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the LCM of 8, 12, and 15 using prime factorization.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize: \( 8=2^3,\ \ 12=2^2\times3,\ \ 15=3\times5 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Take the highest power of each prime: \( 2^3\times3\times5 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =8\times3\times5=120 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 120 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the LCM of 24 and 36 using the division ladder method.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Divide both by common primes step by step:</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 2\ |\ 24,36 \to 12,18 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( 2\ |\ 12,18 \to 6,9 \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">\( 3\ |\ 6,9 \to 2,3 \)</div></div>
+<div class="step"><span class="step-num">5</span><div class="step-text">Multiply divisors and remaining numbers: \( 2\times2\times3\times2\times3=72 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 72 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the LCM of 9 and 6 using the relation \( \text{LCM}\times\text{HCF}=\text{product of numbers} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Find the HCF of 9 and 6 first: \( \text{HCF}=3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Use the relation: \( \text{LCM}=\dfrac{9\times6}{3} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =\dfrac{54}{3}=18 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 18 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Find the LCM of 18, 24, and 30 using prime factorization.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize: \( 18=2\times3^2,\ \ 24=2^3\times3,\ \ 30=2\times3\times5 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Take the highest power of each prime: \( 2^3\times3^2\times5 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =8\times9\times5=360 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 360 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Two runners complete one lap of a track in 12 minutes and 18 minutes respectively. If they start together, after how many minutes will they next be together at the starting point?</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">This requires the LCM of 12 and 18.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 12=2^2\times3,\ \ 18=2\times3^2 \Rightarrow \text{LCM}=2^2\times3^2=36 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">They will meet again after 36 minutes.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 36\ \text{minutes} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Find the smallest number exactly divisible by 15, 20, and 25.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">This is asking for the LCM of 15, 20, 25.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Prime factorize: \( 15=3\times5,\ \ 20=2^2\times5,\ \ 25=5^2 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Take the highest power of each prime: \( 2^2\times3\times5^2 \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">\( =4\times3\times25=300 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 300 \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-8">
+      <button class="topic-header" data-target="body-8" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><circle cx="24" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="40" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"/><path d="M31 18 A20 20 0 0 1 31 46 A20 20 0 0 1 31 18 Z" fill="currentColor" opacity=".85"/></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">8. Highest Common Factor (HCF)</h2>
+          <p class="topic-sub">Prime factorization &amp; Euclidean division method</p>
+        </span>
+        <span class="topic-count" data-count-for="body-8"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-8">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>The <b>HCF</b> (or GCD) of two or more numbers is the largest number that divides all of them exactly. Find it via prime factorization (shared primes at their lowest powers) or the Euclidean algorithm (repeated division).</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Find the HCF of 8 and 12.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Factors of 8: 1,2,4,8</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Factors of 12: 1,2,3,4,6,12</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Greatest common factor: 4.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 4 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Find the HCF of 15 and 25.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Factors of 15: 1,3,5,15</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Factors of 25: 1,5,25</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Greatest common factor: 5.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 5 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Find the HCF of 9 and 27.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Since 27 is a multiple of 9, the HCF is 9.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 9 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the HCF of 24 and 36 using prime factorization.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize: \( 24=2^3\times3,\ \ 36=2^2\times3^2 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Take the lowest power of each common prime: \( 2^2\times3 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =4\times3=12 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the HCF of 18, 24, and 30 using prime factorization.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize: \( 18=2\times3^2,\ \ 24=2^3\times3,\ \ 30=2\times3\times5 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Take the lowest power of each common prime: \( 2\times3 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =6 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 6 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the HCF of 48 and 18 using the Euclidean division algorithm.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">\( 48=2\times18+12 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 18=1\times12+6 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( 12=2\times6+0 \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">The last non-zero remainder is 6.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 6 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Find the HCF of 60 and 84.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize: \( 60=2^2\times3\times5,\ \ 84=2^2\times3\times7 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Take the lowest power of each common prime: \( 2^2\times3 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =12 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Find the HCF of 72, 120, and 168.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Prime factorize: \( 72=2^3\times3^2,\ \ 120=2^3\times3\times5,\ \ 168=2^3\times3\times7 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Take the lowest power of each common prime: \( 2^3\times3 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =24 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 24 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Find the greatest number that divides 245 and 1029, leaving a remainder of 5 in each case.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Subtract the remainder from each number first: \( 245-5=240,\ \ 1029-5=1024 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Find the HCF of 240 and 1024: \( 240=2^4\times3\times5,\ \ 1024=2^{10} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Common factor: \( 2^4=16 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 16 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">If the LCM of two numbers is 180 and their product is 2160, find their HCF.</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Use the relation: \( \text{LCM}\times\text{HCF}=\text{product of numbers} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( \text{HCF}=\dfrac{2160}{180} \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =12 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12 \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-9">
+      <button class="topic-header" data-target="body-9" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><text x="10" y="46" font-size="34" fill="currentColor" font-family="Georgia,serif">2</text><text x="34" y="26" font-size="20" fill="currentColor" font-family="Georgia,serif">n</text></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">9. Exponents &amp; Their Properties</h2>
+          <p class="topic-sub">Product rule, quotient rule, power rule, zero &amp; negative exponents</p>
+        </span>
+        <span class="topic-count" data-count-for="body-9"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-9">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>An exponent shows repeated multiplication: a<sup>n</sup> = a×a×…×a (n times). Key rules — <b>product</b> aᵐ·aⁿ=aᵐ⁺ⁿ, <b>quotient</b> aᵐ÷aⁿ=aᵐ⁻ⁿ, <b>power of a power</b> (aᵐ)ⁿ=aᵐⁿ, <b>zero exponent</b> a⁰=1, and <b>negative exponent</b> a⁻ⁿ = 1/aⁿ.</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( 3^4 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiply 3 by itself 4 times: \( 3\times3\times3\times3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =81 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 81 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( 2^0 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Any non-zero number raised to the power 0 equals 1.</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 1 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( 5^{-2} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">A negative exponent means take the reciprocal: \( 5^{-2}=\dfrac{1}{5^2} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =\dfrac{1}{25} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{1}{25} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Simplify: \( x^3 \times x^5 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Product rule: add the exponents when multiplying same bases.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( x^{3+5}=x^8 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( x^8 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Simplify: \( \dfrac{y^7}{y^3} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Quotient rule: subtract the exponents when dividing same bases.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( y^{7-3}=y^4 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( y^4 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Simplify: \( (2^3)^2 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Power of a power: multiply the exponents.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 2^{3\times2}=2^6 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( =64 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 64 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Simplify: \( (3x^2)^3 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Raise each factor to the power 3: \( 3^3\times(x^2)^3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =27\times x^6 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 27x^6 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify: \( \dfrac{a^4 b^2}{a^2 b^5} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Apply the quotient rule to each base separately.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">For \( a \): \( a^{4-2}=a^2 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">For \( b \): \( b^{2-5}=b^{-3}=\dfrac{1}{b^3} \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Combine: \( \dfrac{a^2}{b^3} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{a^2}{b^3} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Evaluate: \( 16^{3/4} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">A fractional exponent means root and power: \( 16^{3/4}=\left(16^{1/4}\right)^3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 16^{1/4}=2 \) (since \( 2^4=16 \))</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( 2^3=8 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 8 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify: \( \dfrac{2^{-2}\times2^5}{2^0} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Numerator: add exponents \( -2+5=3 \Rightarrow 2^3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Denominator: \( 2^0=1 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">\( \dfrac{2^3}{1}=8 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 8 \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="topic" id="topic-10">
+      <button class="topic-header" data-target="body-10" aria-expanded="false">
+        <span class="topic-icon"><svg viewBox="0 0 64 64"><path d="M4 36 L14 46 L26 10" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><line x1="26" y1="10" x2="60" y2="10" stroke="currentColor" stroke-width="4"/><line x1="30" y1="10" x2="30" y2="10" stroke="currentColor"/></svg></span>
+        <span class="topic-headtext">
+          <h2 class="topic-title">10. Roots &amp; Their Properties</h2>
+          <p class="topic-sub">Product rule, quotient rule, simplifying &amp; rationalizing radicals</p>
+        </span>
+        <span class="topic-count" data-count-for="body-10"></span>
+        <span class="chevron">&rsaquo;</span>
+      </button>
+      <div class="topic-body" id="body-10">
+        <div class="concept-box">
+          <span class="concept-label">Concept &amp; Definition</span>
+          <p>Roots undo exponents. Use the <b>product rule</b> √a×√b=√(ab) and <b>quotient rule</b> √a/√b=√(a/b) to simplify radicals. <b>Rationalizing</b> clears a root from the denominator by multiplying by the root itself or its conjugate.</p>
+        </div>
+        <div class="qgrid">
+        
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q1</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt{64} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Find a number which, multiplied by itself, gives 64.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 8\times8=64 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 8 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q2</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Evaluate: \( \sqrt[3]{125} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Find a number which, cubed, gives 125.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( 5\times5\times5=125 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 5 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q3</span>
+            <span class="diff diff-basic">Basic</span>
+          </div>
+          <div class="qprompt">Simplify using the product rule: \( \sqrt{4}\times\sqrt{9} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">\( \sqrt{4}=2,\ \ \sqrt{9}=3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Multiply: \( 2\times3=6 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 6 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q4</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Simplify: \( \sqrt{48} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Write 48 as a product including a perfect square: \( 48=16\times3 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( \sqrt{48}=\sqrt{16}\times\sqrt{3}=4\sqrt3 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 4\sqrt{3} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q5</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Simplify using the quotient rule: \( \dfrac{\sqrt{75}}{\sqrt{3}} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Combine under one radical: \( \sqrt{\dfrac{75}{3}} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =\sqrt{25}=5 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 5 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q6</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Rationalize the denominator: \( \dfrac{1}{\sqrt{5}} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiply top and bottom by \( \sqrt{5} \): \( \dfrac{1\times\sqrt5}{\sqrt5\times\sqrt5} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =\dfrac{\sqrt5}{5} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{\sqrt5}{5} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q7</span>
+            <span class="diff diff-inter">Intermediate</span>
+          </div>
+          <div class="qprompt">Evaluate: \( (\sqrt{3})^4 \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Write \( \sqrt3 \) as \( 3^{1/2} \): \( (3^{1/2})^4=3^{4/2}=3^2 \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =9 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 9 \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q8</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify: \( 3\sqrt{2} + 5\sqrt{2} - \sqrt{2} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">These are like radicals, so add/subtract their coefficients.</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( (3+5-1)\sqrt2=7\sqrt2 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 7\sqrt{2} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q9</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Rationalize and simplify: \( \dfrac{2}{\sqrt7 - 2} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Multiply top and bottom by the conjugate \( \sqrt7+2 \): \( \dfrac{2(\sqrt7+2)}{(\sqrt7-2)(\sqrt7+2)} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">Denominator: \( 7-4=3 \)</div></div>
+<div class="step"><span class="step-num">3</span><div class="step-text">Numerator: \( 2\sqrt7+4 \)</div></div>
+<div class="step"><span class="step-num">4</span><div class="step-text">Result: \( \dfrac{2\sqrt7+4}{3} \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( \dfrac{2\sqrt7+4}{3} \)</div>
+        </div>
+        <div class="qcard">
+          <div class="qhead">
+            <span class="qnum">Q10</span>
+            <span class="diff diff-adv">Advanced</span>
+          </div>
+          <div class="qprompt">Simplify: \( \sqrt{8} \times \sqrt{18} \)</div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><div class="step-text">Use the product rule: \( \sqrt{8\times18}=\sqrt{144} \)</div></div>
+<div class="step"><span class="step-num">2</span><div class="step-text">\( =12 \)</div></div>
+          </div>
+          <div class="answer"><span class="ans-label">Answer</span> \( 12 \)</div>
+        </div>
+      </div>
+      </div>
+    </section>
+</main>
+</div>
+
+<div class="view" id="view-assignment">
+  <div class="toolbar">
+    <button class="btn btn-amber" id="downloadAssignBtn">&#11015; Download Assignment PDF</button>
+  </div>
+  <div class="assign-intro">
+    <h2>100-Question Assignment &mdash; Lecture 2</h2>
+    <p>Ten questions from each of the ten topics above (100 total). Attempt every question on your own first, then tap <b>&ldquo;Reveal Answer Key&rdquo;</b> at the bottom to check your work. This assignment is also available as a standalone downloadable PDF, with the key printed at the very end.</p>
+  </div>
+
+  <div id="assignQuestions">
+<div class="assign-group">
+  <h3>1. Operations on Fractions</h3>
+  <div class="assign-list">
+    <div class="aq"><b>1.</b><span class="aq-text">\( \dfrac{1}{2} + \dfrac{1}{6} \)</span></div>
+    <div class="aq"><b>2.</b><span class="aq-text">\( \dfrac{3}{4} - \dfrac{1}{8} \)</span></div>
+    <div class="aq"><b>3.</b><span class="aq-text">\( \dfrac{2}{5} \times \dfrac{5}{6} \)</span></div>
+    <div class="aq"><b>4.</b><span class="aq-text">\( \dfrac{3}{7} \div \dfrac{2}{7} \)</span></div>
+    <div class="aq"><b>5.</b><span class="aq-text">\( \dfrac{1}{3} + \dfrac{1}{4} + \dfrac{1}{6} \)</span></div>
+    <div class="aq"><b>6.</b><span class="aq-text">\( \dfrac{5}{8} - \dfrac{1}{3} \)</span></div>
+    <div class="aq"><b>7.</b><span class="aq-text">\( \dfrac{4}{9} \times \dfrac{3}{8} \)</span></div>
+    <div class="aq"><b>8.</b><span class="aq-text">\( \dfrac{7}{10} \div \dfrac{3}{5} \)</span></div>
+    <div class="aq"><b>9.</b><span class="aq-text">\( 2\dfrac{1}{2} + 1\dfrac{1}{3} \)</span></div>
+    <div class="aq"><b>10.</b><span class="aq-text">\( 3\dfrac{1}{4} - 1\dfrac{3}{8} \)</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>2. Basic Roots</h3>
+  <div class="assign-list">
+    <div class="aq"><b>11.</b><span class="aq-text">\( \sqrt{81} \)</span></div>
+    <div class="aq"><b>12.</b><span class="aq-text">\( \sqrt{121} \)</span></div>
+    <div class="aq"><b>13.</b><span class="aq-text">\( \sqrt[3]{27} \)</span></div>
+    <div class="aq"><b>14.</b><span class="aq-text">\( \sqrt[3]{64} \)</span></div>
+    <div class="aq"><b>15.</b><span class="aq-text">\( \sqrt{0.25} \)</span></div>
+    <div class="aq"><b>16.</b><span class="aq-text">\( \sqrt{\dfrac{9}{16}} \)</span></div>
+    <div class="aq"><b>17.</b><span class="aq-text">\( \sqrt[3]{-8} \)</span></div>
+    <div class="aq"><b>18.</b><span class="aq-text">\( \sqrt{196} \)</span></div>
+    <div class="aq"><b>19.</b><span class="aq-text">\( \sqrt[3]{1} \)</span></div>
+    <div class="aq"><b>20.</b><span class="aq-text">\( \sqrt{225} \)</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>3. Fraction Operation Solving Techniques</h3>
+  <div class="assign-list">
+    <div class="aq"><b>21.</b><span class="aq-text">Simplify: \( \left(\dfrac{2}{3}+\dfrac{1}{6}\right) \div \dfrac{1}{2} \)</span></div>
+    <div class="aq"><b>22.</b><span class="aq-text">Solve for x: \( \dfrac{x}{3} + \dfrac{1}{2} = \dfrac{5}{6} \)</span></div>
+    <div class="aq"><b>23.</b><span class="aq-text">Simplify: \( \dfrac{1/2}{3/4} \)</span></div>
+    <div class="aq"><b>24.</b><span class="aq-text">Simplify: \( \dfrac{2}{3} - \left(\dfrac{1}{4}+\dfrac{1}{6}\right) \)</span></div>
+    <div class="aq"><b>25.</b><span class="aq-text">Solve for x: \( \dfrac{x+1}{4} = \dfrac{3}{2} \)</span></div>
+    <div class="aq"><b>26.</b><span class="aq-text">Simplify: \( \left(\dfrac{5}{6}\times\dfrac{3}{10}\right) \div \dfrac{1}{4} \)</span></div>
+    <div class="aq"><b>27.</b><span class="aq-text">Evaluate: \( \dfrac{1}{6} + \dfrac{1}{9} \)</span></div>
+    <div class="aq"><b>28.</b><span class="aq-text">Solve for x: \( \dfrac{2}{x} = \dfrac{4}{10} \)</span></div>
+    <div class="aq"><b>29.</b><span class="aq-text">Simplify: \( \left(\dfrac{3}{5} \div \dfrac{2}{5}\right) + \dfrac{1}{2} \)</span></div>
+    <div class="aq"><b>30.</b><span class="aq-text">Solve for x: \( \dfrac{3}{4}x = 9 \)</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>4. Properties of Real Numbers</h3>
+  <div class="assign-list">
+    <div class="aq"><b>31.</b><span class="aq-text">Name the property: \( 5+7=7+5 \)</span></div>
+    <div class="aq"><b>32.</b><span class="aq-text">Name the property: \( (2+3)+4=2+(3+4) \)</span></div>
+    <div class="aq"><b>33.</b><span class="aq-text">Name the property: \( 6\times(2+3)=6\times2+6\times3 \)</span></div>
+    <div class="aq"><b>34.</b><span class="aq-text">Name the property: \( 9+0=9 \)</span></div>
+    <div class="aq"><b>35.</b><span class="aq-text">Name the property: \( 8\times1=8 \)</span></div>
+    <div class="aq"><b>36.</b><span class="aq-text">Name the property: \( 4\times\dfrac{1}{4}=1 \)</span></div>
+    <div class="aq"><b>37.</b><span class="aq-text">Name the property: \( -5+5=0 \)</span></div>
+    <div class="aq"><b>38.</b><span class="aq-text">Name the property: \( 3\times5=5\times3 \)</span></div>
+    <div class="aq"><b>39.</b><span class="aq-text">Name the property: \( (2\times3)\times4=2\times(3\times4) \)</span></div>
+    <div class="aq"><b>40.</b><span class="aq-text">Name the property: \( 7\times(4+2)=7\times4+7\times2 \)</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>5. Factors</h3>
+  <div class="assign-list">
+    <div class="aq"><b>41.</b><span class="aq-text">List all factors of 36</span></div>
+    <div class="aq"><b>42.</b><span class="aq-text">Prime factorize 84</span></div>
+    <div class="aq"><b>43.</b><span class="aq-text">Is 91 a prime number?</span></div>
+    <div class="aq"><b>44.</b><span class="aq-text">Number of factors of \( 60=2^2\times3\times5 \)</span></div>
+    <div class="aq"><b>45.</b><span class="aq-text">Prime factorize 100</span></div>
+    <div class="aq"><b>46.</b><span class="aq-text">List all factors of 45</span></div>
+    <div class="aq"><b>47.</b><span class="aq-text">Prime factorize 150</span></div>
+    <div class="aq"><b>48.</b><span class="aq-text">Number of factors of \( 72=2^3\times3^2 \)</span></div>
+    <div class="aq"><b>49.</b><span class="aq-text">Greatest prime factor of 210</span></div>
+    <div class="aq"><b>50.</b><span class="aq-text">Is 97 a prime number?</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>6. Multiples</h3>
+  <div class="assign-list">
+    <div class="aq"><b>51.</b><span class="aq-text">First 5 multiples of 7</span></div>
+    <div class="aq"><b>52.</b><span class="aq-text">First 5 multiples of 12</span></div>
+    <div class="aq"><b>53.</b><span class="aq-text">Common multiples of 4 and 6 up to 50</span></div>
+    <div class="aq"><b>54.</b><span class="aq-text">Is 84 a multiple of 12?</span></div>
+    <div class="aq"><b>55.</b><span class="aq-text">Smallest common multiple of 5, 6 and 8</span></div>
+    <div class="aq"><b>56.</b><span class="aq-text">9th multiple of 15</span></div>
+    <div class="aq"><b>57.</b><span class="aq-text">Multiples of 9 between 40 and 80</span></div>
+    <div class="aq"><b>58.</b><span class="aq-text">Common multiples of 3 and 5 less than 40</span></div>
+    <div class="aq"><b>59.</b><span class="aq-text">Is 150 a multiple of 25?</span></div>
+    <div class="aq"><b>60.</b><span class="aq-text">6th multiple of 14</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>7. Least Common Multiple (LCM)</h3>
+  <div class="assign-list">
+    <div class="aq"><b>61.</b><span class="aq-text">LCM of 8 and 12</span></div>
+    <div class="aq"><b>62.</b><span class="aq-text">LCM of 15 and 20</span></div>
+    <div class="aq"><b>63.</b><span class="aq-text">LCM of 6, 8 and 10</span></div>
+    <div class="aq"><b>64.</b><span class="aq-text">LCM of 9 and 12</span></div>
+    <div class="aq"><b>65.</b><span class="aq-text">LCM of 14 and 21</span></div>
+    <div class="aq"><b>66.</b><span class="aq-text">LCM of 4, 6 and 8 (division ladder)</span></div>
+    <div class="aq"><b>67.</b><span class="aq-text">LCM of 5 and 7</span></div>
+    <div class="aq"><b>68.</b><span class="aq-text">LCM of 18 and 24</span></div>
+    <div class="aq"><b>69.</b><span class="aq-text">LCM of 10, 15 and 25</span></div>
+    <div class="aq"><b>70.</b><span class="aq-text">LCM of 16 and 20</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>8. Highest Common Factor (HCF)</h3>
+  <div class="assign-list">
+    <div class="aq"><b>71.</b><span class="aq-text">HCF of 24 and 36</span></div>
+    <div class="aq"><b>72.</b><span class="aq-text">HCF of 18 and 27</span></div>
+    <div class="aq"><b>73.</b><span class="aq-text">HCF of 48 and 60</span></div>
+    <div class="aq"><b>74.</b><span class="aq-text">HCF of 56 and 98 (Euclidean method)</span></div>
+    <div class="aq"><b>75.</b><span class="aq-text">HCF of 15, 20 and 25</span></div>
+    <div class="aq"><b>76.</b><span class="aq-text">HCF of 100 and 75</span></div>
+    <div class="aq"><b>77.</b><span class="aq-text">HCF of 84 and 120</span></div>
+    <div class="aq"><b>78.</b><span class="aq-text">HCF of 17 and 34</span></div>
+    <div class="aq"><b>79.</b><span class="aq-text">HCF of 45 and 54</span></div>
+    <div class="aq"><b>80.</b><span class="aq-text">HCF of 72 and 90</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>9. Exponents & Their Properties</h3>
+  <div class="assign-list">
+    <div class="aq"><b>81.</b><span class="aq-text">Simplify: \( 3^2 \times 3^4 \)</span></div>
+    <div class="aq"><b>82.</b><span class="aq-text">Simplify: \( 5^7 \div 5^3 \)</span></div>
+    <div class="aq"><b>83.</b><span class="aq-text">Simplify: \( (2^3)^2 \)</span></div>
+    <div class="aq"><b>84.</b><span class="aq-text">Simplify: \( 4^0 \)</span></div>
+    <div class="aq"><b>85.</b><span class="aq-text">Simplify: \( 2^{-3} \)</span></div>
+    <div class="aq"><b>86.</b><span class="aq-text">Simplify: \( \left(\dfrac{3}{4}\right)^2 \)</span></div>
+    <div class="aq"><b>87.</b><span class="aq-text">Simplify: \( 10^{-2} \)</span></div>
+    <div class="aq"><b>88.</b><span class="aq-text">Simplify: \( x^5 \times x^{-2} \)</span></div>
+    <div class="aq"><b>89.</b><span class="aq-text">Simplify: \( \dfrac{2^2\times2^3}{2^4} \)</span></div>
+    <div class="aq"><b>90.</b><span class="aq-text">Simplify: \( 5^0 \times 5^3 \)</span></div>
+  </div>
+</div>
+<div class="assign-group">
+  <h3>10. Roots & Their Properties</h3>
+  <div class="assign-list">
+    <div class="aq"><b>91.</b><span class="aq-text">\( \sqrt{49} \)</span></div>
+    <div class="aq"><b>92.</b><span class="aq-text">\( \sqrt[3]{216} \)</span></div>
+    <div class="aq"><b>93.</b><span class="aq-text">Simplify: \( \sqrt{50} \)</span></div>
+    <div class="aq"><b>94.</b><span class="aq-text">Simplify: \( \sqrt{72} \)</span></div>
+    <div class="aq"><b>95.</b><span class="aq-text">\( \sqrt{16}\times\sqrt{25} \)</span></div>
+    <div class="aq"><b>96.</b><span class="aq-text">\( \dfrac{\sqrt{100}}{\sqrt{4}} \)</span></div>
+    <div class="aq"><b>97.</b><span class="aq-text">Rationalize: \( \dfrac{1}{\sqrt7} \)</span></div>
+    <div class="aq"><b>98.</b><span class="aq-text">Simplify: \( 2\sqrt3+4\sqrt3-\sqrt3 \)</span></div>
+    <div class="aq"><b>99.</b><span class="aq-text">Rationalize: \( \dfrac{3}{\sqrt5-1} \)</span></div>
+    <div class="aq"><b>100.</b><span class="aq-text">\( \sqrt8 \times \sqrt2 \)</span></div>
+  </div>
+</div>
+  </div>
+
+  <div class="key-toggle-wrap">
+    <button class="btn btn-primary" id="revealKeyBtn">&#128274; Reveal Answer Key</button>
+  </div>
+  <div class="keybox" id="keyBox">
+    <div class="key-panel" id="answerKeyPanel">
+      <h2>Answer Key</h2>
+      <div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">1. Operations on Fractions</h4><div class="key-grid"><div><b>1.</b> \( \dfrac{2}{3} \)</div><div><b>2.</b> \( \dfrac{5}{8} \)</div><div><b>3.</b> \( \dfrac{1}{3} \)</div><div><b>4.</b> \( \dfrac{3}{2} \)</div><div><b>5.</b> \( \dfrac{3}{4} \)</div><div><b>6.</b> \( \dfrac{7}{24} \)</div><div><b>7.</b> \( \dfrac{1}{6} \)</div><div><b>8.</b> \( \dfrac{7}{6} \)</div><div><b>9.</b> \( 3\dfrac{5}{6} \)</div><div><b>10.</b> \( 1\dfrac{7}{8} \)</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">2. Basic Roots</h4><div class="key-grid"><div><b>11.</b> 9</div><div><b>12.</b> 11</div><div><b>13.</b> 3</div><div><b>14.</b> 4</div><div><b>15.</b> 0.5</div><div><b>16.</b> \( \dfrac{3}{4} \)</div><div><b>17.</b> -2</div><div><b>18.</b> 14</div><div><b>19.</b> 1</div><div><b>20.</b> 15</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">3. Fraction Operation Solving Techniques</h4><div class="key-grid"><div><b>21.</b> \( \dfrac{5}{3} \)</div><div><b>22.</b> \( x = 1 \)</div><div><b>23.</b> \( \dfrac{2}{3} \)</div><div><b>24.</b> \( \dfrac{1}{4} \)</div><div><b>25.</b> \( x = 5 \)</div><div><b>26.</b> 1</div><div><b>27.</b> \( \dfrac{5}{18} \)</div><div><b>28.</b> \( x = 5 \)</div><div><b>29.</b> 2</div><div><b>30.</b> \( x = 12 \)</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">4. Properties of Real Numbers</h4><div class="key-grid"><div><b>31.</b> Commutative (addition)</div><div><b>32.</b> Associative (addition)</div><div><b>33.</b> Distributive</div><div><b>34.</b> Identity (addition)</div><div><b>35.</b> Identity (multiplication)</div><div><b>36.</b> Inverse (multiplicative)</div><div><b>37.</b> Inverse (additive)</div><div><b>38.</b> Commutative (multiplication)</div><div><b>39.</b> Associative (multiplication)</div><div><b>40.</b> Distributive</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">5. Factors</h4><div class="key-grid"><div><b>41.</b> 1, 2, 3, 4, 6, 9, 12, 18, 36</div><div><b>42.</b> \( 2^2\times3\times7 \)</div><div><b>43.</b> No &mdash; \( 91 = 7\times13 \)</div><div><b>44.</b> 12</div><div><b>45.</b> \( 2^2\times5^2 \)</div><div><b>46.</b> 1, 3, 5, 9, 15, 45</div><div><b>47.</b> \( 2\times3\times5^2 \)</div><div><b>48.</b> 12</div><div><b>49.</b> 7</div><div><b>50.</b> Yes</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">6. Multiples</h4><div class="key-grid"><div><b>51.</b> 7, 14, 21, 28, 35</div><div><b>52.</b> 12, 24, 36, 48, 60</div><div><b>53.</b> 12, 24, 36, 48</div><div><b>54.</b> Yes &mdash; \( 12\times7=84 \)</div><div><b>55.</b> 120</div><div><b>56.</b> 135</div><div><b>57.</b> 45, 54, 63, 72</div><div><b>58.</b> 15, 30</div><div><b>59.</b> Yes &mdash; \( 25\times6=150 \)</div><div><b>60.</b> 84</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">7. Least Common Multiple (LCM)</h4><div class="key-grid"><div><b>61.</b> 24</div><div><b>62.</b> 60</div><div><b>63.</b> 120</div><div><b>64.</b> 36</div><div><b>65.</b> 42</div><div><b>66.</b> 24</div><div><b>67.</b> 35</div><div><b>68.</b> 72</div><div><b>69.</b> 150</div><div><b>70.</b> 80</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">8. Highest Common Factor (HCF)</h4><div class="key-grid"><div><b>71.</b> 12</div><div><b>72.</b> 9</div><div><b>73.</b> 12</div><div><b>74.</b> 14</div><div><b>75.</b> 5</div><div><b>76.</b> 25</div><div><b>77.</b> 12</div><div><b>78.</b> 17</div><div><b>79.</b> 9</div><div><b>80.</b> 18</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">9. Exponents & Their Properties</h4><div class="key-grid"><div><b>81.</b> \( 3^6 = 729 \)</div><div><b>82.</b> \( 5^4 = 625 \)</div><div><b>83.</b> \( 2^6 = 64 \)</div><div><b>84.</b> 1</div><div><b>85.</b> \( \dfrac{1}{8} \)</div><div><b>86.</b> \( \dfrac{9}{16} \)</div><div><b>87.</b> \( \dfrac{1}{100} = 0.01 \)</div><div><b>88.</b> \( x^3 \)</div><div><b>89.</b> 2</div><div><b>90.</b> 125</div></div></div>
+<div class="key-sub"><h4 style="color:var(--teal-deep);margin:14px 0 6px;">10. Roots & Their Properties</h4><div class="key-grid"><div><b>91.</b> 7</div><div><b>92.</b> 6</div><div><b>93.</b> \( 5\sqrt2 \)</div><div><b>94.</b> \( 6\sqrt2 \)</div><div><b>95.</b> 20</div><div><b>96.</b> 5</div><div><b>97.</b> \( \dfrac{\sqrt7}{7} \)</div><div><b>98.</b> \( 5\sqrt3 \)</div><div><b>99.</b> \( \dfrac{3(\sqrt5+1)}{4} \)</div><div><b>100.</b> 4</div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>Preparation with Mushtaque &middot; Sukkur IBA University &mdash; Lecture 2 Practice Bank &amp; Assignment</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    /* ---- render all math ---- */
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "\\(", right: "\\)", display: false},
+        {left: "\\[", right: "\\]", display: true}
+      ]
+    });
+
+    /* ---- floating background glyphs (ambient decoration) ---- */
+    var glyphs = ["+","-","\u00d7","\u00f7","\u221a","\u03c0","\u03a3","x\u00b2","\u00bd","\u00be"];
+    var deco = document.getElementById("bgDeco");
+    if (deco) {
+      for (var i = 0; i < 14; i++) {
+        var s = document.createElement("span");
+        s.textContent = glyphs[i % glyphs.length];
+        s.style.left = (Math.random() * 96) + "vw";
+        s.style.fontSize = (18 + Math.random() * 30) + "px";
+        s.style.animationDuration = (16 + Math.random() * 14) + "s";
+        s.style.animationDelay = (-Math.random() * 20) + "s";
+        deco.appendChild(s);
+      }
+    }
+
+    /* ---- topic counts ---- */
+    document.querySelectorAll(".topic-count").forEach(function (el) {
+      var id = el.getAttribute("data-count-for");
+      var body = document.getElementById(id);
+      if (body) {
+        var n = body.querySelectorAll(".qcard").length;
+        el.textContent = n + " Qs";
+      }
+    });
+
+    /* ---- accordion toggle ---- */
+    function setTopicOpen(topicEl, open) {
+      var body = topicEl.querySelector(".topic-body");
+      var btn = topicEl.querySelector(".topic-header");
+      topicEl.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    document.querySelectorAll(".topic-header").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var topicEl = btn.closest(".topic");
+        setTopicOpen(topicEl, !topicEl.classList.contains("open"));
+      });
+    });
+    document.getElementById("expandAllBtn").addEventListener("click", function () {
+      document.querySelectorAll(".topic").forEach(function (t) { setTopicOpen(t, true); });
+    });
+    document.getElementById("collapseAllBtn").addEventListener("click", function () {
+      document.querySelectorAll(".topic").forEach(function (t) { setTopicOpen(t, false); });
+    });
+    /* open the first topic by default so the page isn't empty on load */
+    var firstTopic = document.querySelector(".topic");
+    if (firstTopic) setTopicOpen(firstTopic, true);
+
+    /* ---- answer key reveal ---- */
+    var keyBox = document.getElementById("keyBox");
+    var revealBtn = document.getElementById("revealKeyBtn");
+    revealBtn.addEventListener("click", function () {
+      var open = keyBox.classList.toggle("open");
+      revealBtn.innerHTML = open ? "&#128275; Hide Answer Key" : "&#128274; Reveal Answer Key";
+    });
+
+    /* ---- tab switching (Lecture <-> Assignment) ---- */
+    var views = { "view-lecture": document.getElementById("view-lecture"), "view-assignment": document.getElementById("view-assignment") };
+    document.querySelectorAll(".tabbtn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tabbtn").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        Object.keys(views).forEach(function (k) { views[k].classList.remove("active"); });
+        var target = btn.getAttribute("data-view");
+        views[target].classList.add("active");
+        views[target].style.animation = "none";
+        void views[target].offsetWidth;
+        views[target].style.animation = "";
+      });
+    });
+
+    /* ---- PDF export helper ---- */
+    function exportPdf(el, filename, btn, expandTopics) {
+      var originalLabel = btn.innerHTML;
+      btn.setAttribute("disabled", "disabled");
+      btn.innerHTML = "&#8987; Preparing PDF...";
+      document.body.classList.add("exporting");
+
+      var reopenList = [];
+      if (expandTopics) {
+        document.querySelectorAll(".topic").forEach(function (t) {
+          if (!t.classList.contains("open")) { reopenList.push(t); t.classList.add("open"); }
+        });
+      }
+      var keyWasOpen = keyBox.classList.contains("open");
+      if (!keyWasOpen) keyBox.classList.add("open");
+
+      var opt = {
+        margin: [10, 8, 12, 8],
+        filename: filename,
+        image: { type: "jpeg", quality: 0.97 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        pagebreak: { mode: ["css", "avoid-all"] }
+      };
+
+      setTimeout(function () {
+        html2pdf().set(opt).from(el).save().then(function () {
+          cleanup();
+        }).catch(function () {
+          cleanup();
+        });
+      }, 60);
+
+      function cleanup() {
+        document.body.classList.remove("exporting");
+        if (!keyWasOpen) keyBox.classList.remove("open");
+        reopenList.forEach(function (t) { t.classList.remove("open"); });
+        btn.removeAttribute("disabled");
+        btn.innerHTML = originalLabel;
+      }
+    }
+
+    document.getElementById("downloadLectureBtn").addEventListener("click", function () {
+      var btn = this;
+      exportPdf(document.getElementById("view-lecture"), "Math-Lecture2-Practice-Bank.pdf", btn, true);
+    });
+    document.getElementById("downloadAssignBtn").addEventListener("click", function () {
+      var btn = this;
+      exportPdf(document.getElementById("view-assignment"), "Math-Lecture2-Assignment.pdf", btn, true);
+    });
+
+  });
+</script>
+</body>
+</html>
